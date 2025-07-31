@@ -8,8 +8,8 @@ from app.application import Application
 from selenium.webdriver.edge.options import Options
 
 
-
-def browser_init(context, scenario_name):
+def browser_init(context):
+# def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
@@ -25,25 +25,25 @@ def browser_init(context, scenario_name):
     # options = ChromeOptions()
     # options.add_argument('--headless=new')
     # options.add_argument('--window-size=1920,1080')
-    # driver_path = ChromeDriverManager().install()
-    # service = ChromeService(driver_path)
+    driver_path = ChromeDriverManager().install()
+    service = ChromeService(driver_path)
     # context.driver = webdriver.Chrome(service=service, options=options)
+    context.driver = webdriver.Chrome(service=service)
 
-
-    ## BROWSERSTACK ###
-    bs_user ='oleksandrashatok_Mn5JFD'
-    bs_key = 'rhnm3RD19M7hHwrmKjGw'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-
-    options = Options()
-    bstack_options = {
-        "os" : "Windows",
-        "osVersion" : "11",
-        'browserName': 'Edge',
-        'sessionName': scenario_name,
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # ## BROWSERSTACK ###
+    # bs_user ='oleksandrashatok_Mn5JFD'
+    # bs_key = 'rhnm3RD19M7hHwrmKjGw'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     "os" : "Windows",
+    #     "osVersion" : "11",
+    #     'browserName': 'Edge',
+    #     'sessionName': scenario_name,
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -51,7 +51,8 @@ def browser_init(context, scenario_name):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    browser_init(context, scenario.name)
+    # browser_init(context, scenario.name)
+    browser_init(context)
 
 
 def before_step(context, step):
