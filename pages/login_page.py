@@ -1,7 +1,7 @@
 from selenium.common import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-import time
+from time import sleep
 
 from pages.base_page import Page
 from selenium.webdriver.common.by import By
@@ -15,7 +15,10 @@ class LoginPage(Page):
         self.open_url("https://soft.reelly.io/sign-in")
 
     def sign_in(self, email, password):
+        sleep(2)
         self.input_text(self.EMAIL_FIELD, email)
+        sleep(2)
         self.input_text(self.PASSWORD_FIELD, password)
+        sleep(2)
         self.click(self.SIGN_IN_BTN)
 
