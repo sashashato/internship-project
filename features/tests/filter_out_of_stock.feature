@@ -1,4 +1,5 @@
 # Created by sasha at 7/22/25
+@smoke
 Feature: Filter Out of Stock Products
 
   Scenario: User can filter by Out of Stock
