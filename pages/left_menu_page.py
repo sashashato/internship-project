@@ -6,13 +6,18 @@ import time
 
 class LeftMenuPage:
     OFF_PLAN_BUTTON = (By.XPATH, "//a[@wized='newOffPlanLink']")
-
+    MOB_OFF_PLAN_BUTTON = (By.XPATH, "//a[@wized='newOffPlanLink']")
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 20)
 
     def click_off_plan(self):
-        sleep(2)
-        self.wait.until(EC.presence_of_element_located(self.OFF_PLAN_BUTTON))
-        elements = self.driver.find_elements(*self.OFF_PLAN_BUTTON)
-        elements[0].click()
+        sleep(3)
+        # self.wait.until(EC.presence_of_element_located(self.OFF_PLAN_BUTTON))
+        # elements = self.driver.find_elements(*self.OFF_PLAN_BUTTON)
+        # elements[0].click()
+
+        # MOBILE
+        self.wait.until(EC.presence_of_element_located(self.MOB_OFF_PLAN_BUTTON))
+        elements = self.driver.find_elements(*self.MOB_OFF_PLAN_BUTTON)
+        elements[1].click()

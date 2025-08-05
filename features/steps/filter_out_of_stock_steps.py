@@ -1,3 +1,5 @@
+from time import sleep
+
 from behave import given, when, then
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -23,7 +25,7 @@ def click_off_plan(context):
 @then ("Verify the right page opens")
 def verify_off_plan_page_opens(context):
     expected_url = "https://find.reelly.io/?pricePer=unit&withDealBonus=false&handoverOnly=false&handoverMonths=1"
-
+    sleep(2)
     WebDriverWait(context.driver, 10).until(
         EC.url_to_be(expected_url)
     )
